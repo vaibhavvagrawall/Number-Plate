@@ -10,10 +10,11 @@ conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="bANSAL1809",
-    database="parkinglot"
+    database="parkinglot" # Database Name
 )
 cursor = conn.cursor()
 
+# Table name is ParkingLog
 def check_plate_in_entry(plate):
     cursor.execute("SELECT * FROM ParkingLog WHERE EntryPlate = %s AND ExitPlate IS NULL", (plate,))
     return cursor.fetchone()
