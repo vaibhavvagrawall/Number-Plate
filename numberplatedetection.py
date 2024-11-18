@@ -10,11 +10,10 @@ conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="bANSAL1809",
-    database="parkinglot" # Database Name
+    database="parkinglot"
 )
 cursor = conn.cursor()
 
-# Table name is ParkingLog
 def check_plate_in_entry(plate):
     cursor.execute("SELECT * FROM ParkingLog WHERE EntryPlate = %s AND ExitPlate IS NULL", (plate,))
     return cursor.fetchone()
@@ -35,7 +34,7 @@ def update_exit_plate(plate):
     total_duration = current_time - entry_time
     total_hours = total_duration.total_seconds() / 3600
 
-    amount = total_hours * 100  # Assuming rate is 100 INR per hour
+    amount = total_hours * 100 
 
     cursor.execute("""UPDATE ParkingLog
                       SET ExitPlate = %s, ExitTimestamp = %s, TotalDuration = %s, AmountPaid = %s
@@ -45,7 +44,6 @@ def update_exit_plate(plate):
 
     print(f"Car with plate '{plate}' is exiting. Payment due: {amount:.2f} INR")
     
-    # Loop until payment is confirmed
     while True:
         payment_confirmed = input("Is payment done? (yes/no): ").strip().lower()
         if payment_confirmed == 'yes':
