@@ -9,13 +9,8 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
-<<<<<<< HEAD
-    password="bANSAL1809",
-    database="parkinglot"
-=======
     password="**********",
-    database="parkinglot" # Database Name
->>>>>>> 9541ed78ca33706c18ea1fe69821233cb5fac030
+    database="parkinglot"
 )
 cursor = conn.cursor()
 
